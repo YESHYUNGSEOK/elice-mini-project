@@ -45,7 +45,7 @@ const Wrapper = styled.button<{ $isClicked: boolean }>`
   background-color: ${(props) =>
     props.$isClicked ? "var(--purple-color)" : "var(--lightgray-color)"};
   border: none;
-  border-radius: 10px;
+  border-radius: 30px;
   margin: 8px;
   font-size: 14px;
   &:hover {
