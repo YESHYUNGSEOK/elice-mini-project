@@ -33,10 +33,20 @@ export const useCourseSearch = () => {
 
   const updatePathname = () => {
     let newPathname = pathname;
-    if (keyword) newPathname += `?keyword=${keyword}`;
-    else newPathname += "?";
-    for (const chip of chips)
-      newPathname += `&${chip.query_key}=${chip.query_value}`;
+    let hasQuery = false;
+
+    if (keyword) {
+      newPathname += `?keyword=${keyword}`;
+      hasQuery = true;
+    }
+
+    for (const chip of chips) {
+      newPathname += `${hasQuery ? "&" : "?"}${chip.query_key}=${
+        chip.query_value
+      }`;
+      hasQuery = true;
+    }
+
     router.push(newPathname);
   };
 
