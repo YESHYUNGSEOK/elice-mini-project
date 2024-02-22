@@ -23,6 +23,7 @@ export const useCourseSearch = () => {
   const updateCourses = async () => {
     const response = await getCourses(offset, COURSE_PER_PAGE);
     setData(response);
+    console.log(response);
   };
 
   useEffect(() => {

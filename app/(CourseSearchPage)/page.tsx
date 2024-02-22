@@ -19,11 +19,13 @@ export default function Home() {
     setOffset,
   } = useCourseSearch();
 
+  if (!data) return <main className="container"></main>;
+
   return (
     <main className="container">
       <Search value={keyword} dispatcher={setKeyword} />
       <Filter filter={COURSE_FILTER} chips={chips} dispatcher={setChips} />
-      <Body>
+      <Body data={data}>
         <PageNavigator />
       </Body>
     </main>

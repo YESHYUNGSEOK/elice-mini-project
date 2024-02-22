@@ -3,20 +3,22 @@
 import styled from "styled-components";
 import CourseCard from "@/app/(CourseSearchPage)/components/Body/components/CourseCard";
 
-export default function Body({ children }: { children: React.ReactNode }) {
+interface Props {
+  children: React.ReactNode;
+  data: any;
+}
+
+export default function Body({
+  children,
+  data: { courses, course_count: totalCourses },
+}: Props) {
   return (
     <Wrapper>
-      <BodyAreaHeader>전체 277개</BodyAreaHeader>
+      <BodyAreaHeader>전체 {totalCourses}개</BodyAreaHeader>
       <BodyAreaBody>
-        <CourseCard></CourseCard>
-        <CourseCard></CourseCard>
-        <CourseCard></CourseCard>
-        <CourseCard></CourseCard>
-        <CourseCard></CourseCard>
-        <CourseCard></CourseCard>
-        <CourseCard></CourseCard>
-        <CourseCard></CourseCard>
-        <CourseCard></CourseCard>
+        {courses.map((course: any) => (
+          <CourseCard key={course.id} course={course} />
+        ))}
       </BodyAreaBody>
       {children}
     </Wrapper>
