@@ -46,10 +46,11 @@ export default function PageNavigator({
     totalLength,
   });
 
+  const hasNoData = totalLength === 0;
   const pages = calculatePageRange(currentPage, totalPages);
 
   return (
-    <Wrapper>
+    <Wrapper $hasNoData={hasNoData}>
       <Navigator>
         <PaginationArrowIcon
           size={25}
@@ -84,8 +85,8 @@ export default function PageNavigator({
   );
 }
 
-const Wrapper = styled.div`
-  display: flex;
+const Wrapper = styled.div<{ $hasNoData: boolean }>`
+  display: ${(props) => (props.$hasNoData ? "none" : "flex")};
   justify-content: center;
   margin-top: 24px;
 `;
