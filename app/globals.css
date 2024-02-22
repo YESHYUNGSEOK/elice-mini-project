@@ -1,5 +1,9 @@
 :root {
+  --white-color: rgb(255, 255, 255);
   --lightgray-color: rgb(240, 241, 243);
+  --purple-color: #524fa1;
+
+  --textbox-border-color: rgb(201, 202, 204);
 }
 
 html,
