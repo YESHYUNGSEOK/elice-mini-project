@@ -72,7 +72,7 @@ const Title = styled.div`
   text-overflow: ellipsis;
   font-size: 18px;
   font-weight: bold;
-  color: #222;
+  color: var(--black-color);
   line-height: 1.6;
 `;
 
@@ -106,7 +106,7 @@ const InfoItem = styled.div`
   gap: 8px;
   span {
     font-size: 12px;
-    color: #7d7e80;
+    color: var(--lightgray-color4);
   }
 `;
 

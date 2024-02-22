@@ -1,12 +1,14 @@
 :root {
+  --black-color: #222;
   --white-color: #fff;
   --gray-color: #5e5f61;
   --lightgray-color: #f0f1f3;
   --lightgray-color2: #f9fafc;
   --lightgray-color3: #e6e7e9;
+  --lightgray-color4: #7d7e80;
   --purple-color: #524fa1;
 
-  --textbox-border-color: #c9cacc;
+  --textbox-border-color: rgb(201, 202, 204);
 }
 
 html,
