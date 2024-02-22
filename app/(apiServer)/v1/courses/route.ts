@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server";
 import axios from "axios";
+import { OrgCourseListResponses } from "@/common/interfaces/course.interface";
 
 const eliceApiUrl = process.env.ELICE_API_URL as string;
 
@@ -13,15 +14,21 @@ export async function GET(req: NextRequest) {
   const title = filterConditions["$and"][0].title;
   const chips = filterConditions["$and"][1]["$or"];
 
-  const response = await axios.get(eliceApiUrl, {
-    params: {
-      filter_conditions: JSON.stringify({
-        $and: [{ title: `%${title}%` }, { $or: [...chips] }],
-      }),
-      offset: offset,
-      count: count,
-    },
-  });
-
-  return Response.json(response.data);
+  try {
+    const response: { data: OrgCourseListResponses } = await axios.get(
+      eliceApiUrl,
+      {
+        params: {
+          filter_conditions: JSON.stringify({
+            $and: [{ title: `%${title}%` }, { $or: [...chips] }],
+          }),
+          offset: offset,
+          count: count,
+        },
+      }
+    );
+    return Response.json(response.data);
+  } catch (error) {
+    throw error;
+  }
 }
