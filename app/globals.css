@@ -1,3 +1,7 @@
+:root {
+  --lightgray-color: rgb(240, 241, 243);
+}
+
 html,
 body {
   margin: 0;

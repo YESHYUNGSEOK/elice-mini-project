@@ -1,0 +1,20 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: var(--lightgray-color);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 1280px;
+  @media (max-width: 1279px) {
+    width: 100%;
+  }
+  padding: 24px;
+  gap: 16px;
+}
