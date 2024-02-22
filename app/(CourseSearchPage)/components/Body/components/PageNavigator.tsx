@@ -40,7 +40,7 @@ export default function PageNavigator({
   count,
   dispatcher,
 }: Props) {
-  const { currentPage, totalPages, nextOffset, prevOffset } = usePagination({
+  const { currentPage, totalPages, hasNextPage, hasPrevPage } = usePagination({
     offset,
     count,
     totalLength,
@@ -53,7 +53,7 @@ export default function PageNavigator({
         <PaginationArrowIcon
           size={25}
           direction="left"
-          isClickable={prevOffset !== null}
+          isClickable={hasPrevPage}
           dispatcher={() => {
             dispatcher(offset - count), window.scrollTo(0, 0);
           }}
@@ -73,7 +73,7 @@ export default function PageNavigator({
         <PaginationArrowIcon
           size={25}
           direction="right"
-          isClickable={nextOffset !== null}
+          isClickable={hasNextPage}
           dispatcher={() => {
             dispatcher(offset + count), window.scrollTo(0, 0);
           }}

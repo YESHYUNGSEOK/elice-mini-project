@@ -14,12 +14,12 @@ export const useCourseSearch = () => {
   const [keyword, setKeyword] = useState<string | null>(
     searchParams.get("keyword") || null
   );
-  const [chips, setChips] = useState<ICourseChip[]>(getChips());
+  const [chips, setChips] = useState<ICourseChip[]>(getChipsFromQuery());
   const [data, setData] = useState();
   const [offset, setOffset] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
-  function getChips() {
+  function getChipsFromQuery() {
     const newChips = [];
     for (const chips of COURSE_FILTER) {
       for (const chip of chips.items) {
