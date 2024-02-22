@@ -2,9 +2,8 @@
 
 import styled from "styled-components";
 import CourseCard from "@/app/(CourseSearchPage)/components/Body/components/CourseCard";
-import PageNavigator from "@/app/(CourseSearchPage)/components/Body/components/PageNavigator";
 
-export default function Body() {
+export default function Body({ children }: { children: React.ReactNode }) {
   return (
     <Wrapper>
       <BodyAreaHeader>전체 277개</BodyAreaHeader>
@@ -19,7 +18,7 @@ export default function Body() {
         <CourseCard></CourseCard>
         <CourseCard></CourseCard>
       </BodyAreaBody>
-      <PageNavigator />
+      {children}
     </Wrapper>
   );
 }
