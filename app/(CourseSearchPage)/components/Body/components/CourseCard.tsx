@@ -11,7 +11,6 @@ interface Props {
 
 export default function CourseCard({ course }: Props) {
   const getLabel = () => {
-    console.log(course.enroll_type);
     if (course.enroll_type === 0) {
       if (course.is_free) return "무료";
       else return "유료";
