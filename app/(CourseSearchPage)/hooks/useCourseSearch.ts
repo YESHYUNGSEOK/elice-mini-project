@@ -14,10 +14,22 @@ export const useCourseSearch = () => {
   const [keyword, setKeyword] = useState<string | null>(
     searchParams.get("keyword") || null
   );
-  const [chips, setChips] = useState<ICourseChip[]>([]);
+  const [chips, setChips] = useState<ICourseChip[]>(getChips());
   const [data, setData] = useState();
   const [offset, setOffset] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+
+  function getChips() {
+    const newChips = [];
+    for (const chips of COURSE_FILTER) {
+      for (const chip of chips.items) {
+        if (searchParams.getAll(chip.query_key).includes(chip.query_value)) {
+          newChips.push(chip);
+        }
+      }
+    }
+    return newChips;
+  }
 
   const updatePathname = () => {
     let newPathname = pathname;
