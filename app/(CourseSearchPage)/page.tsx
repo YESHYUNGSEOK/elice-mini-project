@@ -14,21 +14,21 @@ export default function Home() {
     setKeyword,
     chips,
     setChips,
-    data,
+    data: courses,
     offset,
     setOffset,
     isLoading,
   } = useCourseSearch();
 
-  if (isLoading) return <main className="container"></main>;
+  if (isLoading || !courses) return <main className="container"></main>;
 
   return (
     <main className="container">
       <Search value={keyword} dispatcher={setKeyword} />
       <Filter filter={COURSE_FILTER} chips={chips} dispatcher={setChips} />
-      <Body data={data}>
+      <Body data={courses}>
         <PageNavigator
-          totalLength={data.course_count}
+          totalLength={courses.course_count}
           offset={offset}
           count={COURSE_PER_PAGE}
           dispatcher={setOffset}

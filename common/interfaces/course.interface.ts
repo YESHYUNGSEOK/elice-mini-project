@@ -1,24 +1,16 @@
+export interface IOrgCourse {
+  title: string;
+  enroll_type: number;
+  is_free: boolean;
+  short_description: string;
+  logo_file_url: string;
+}
+
 export interface OrgCourseListResponses {
-  courseCount: number;
-  courses: {
-    courseType: number;
-    tags: string[];
-    title: string;
-    shortDescription: string;
-    classType: number;
-    logoFileUrl: null | string;
-    enrolledRolePeriod: null | string;
-    enrolledRoleBeginDatetime: number | null;
-    enrolledRoleEndDatetime: number | null;
-    beginDatetime: number;
-    endDatetime: null | number;
-    isDiscounted: boolean;
-    discountedPrice: string;
-    discountedPriceUsd: string;
-    discountRate: null | any;
-    price: string;
-    priceUsd: string;
-    enrollType: number;
-    isFree: boolean;
-  }[];
+  course_count: number;
+  courses: IOrgCourse[];
+  _result: {
+    status: string;
+    reason: string | null;
+  };
 }

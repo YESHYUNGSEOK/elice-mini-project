@@ -4,9 +4,10 @@ import styled from "styled-components";
 import CalenderIcon from "@/common/components/icons/CalenderIcon";
 import LaptopIcon from "@/common/components/icons/LaptopIcon";
 import LevelIcon from "@/common/components/icons/LevelIcon";
+import { IOrgCourse } from "@/common/interfaces/course.interface";
 
 interface Props {
-  course: any;
+  course: IOrgCourse;
 }
 
 export default function CourseCard({ course }: Props) {

@@ -4,6 +4,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { COURSE_PER_PAGE } from "@/common/constants/page.constant";
 import { ICourseChip } from "@/common/constants/filter.constant";
 import { COURSE_FILTER } from "@/common/constants/filter.constant";
+import { OrgCourseListResponses } from "@/common/interfaces/course.interface";
 
 export const useCourseSearch = () => {
   const [pathname, router, searchParams] = [
@@ -15,7 +16,7 @@ export const useCourseSearch = () => {
     searchParams.get("keyword") || null
   );
   const [chips, setChips] = useState<ICourseChip[]>(getChipsFromQuery());
-  const [data, setData] = useState();
+  const [data, setData] = useState<OrgCourseListResponses>();
   const [offset, setOffset] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
