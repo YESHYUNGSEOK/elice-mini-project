@@ -7,12 +7,21 @@ export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
   const offset = searchParams.get("offset");
   const count = searchParams.get("count");
+  const filterConditions = JSON.parse(
+    searchParams.get("filter_conditions") as string
+  );
+  const title = filterConditions["$and"][0].title;
+  const chips = filterConditions["$and"][1]["$or"];
 
   const response = await axios.get(eliceApiUrl, {
     params: {
-      count,
-      offset,
+      filter_conditions: JSON.stringify({
+        $and: [{ title: `%${title}%` }, { $or: [...chips] }],
+      }),
+      offset: offset,
+      count: count,
     },
   });
+
   return Response.json(response.data);
 }

@@ -15,12 +15,12 @@ export default function Home() {
     chips,
     setChips,
     data,
-    setData,
     offset,
     setOffset,
+    isLoading,
   } = useCourseSearch();
 
-  if (!data) return <main className="container"></main>;
+  if (isLoading) return <main className="container"></main>;
 
   return (
     <main className="container">

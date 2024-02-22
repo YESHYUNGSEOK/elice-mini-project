@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useRef, useState } from "react";
 import { getCourses } from "@/app/(CourseSearchPage)/api/getCourses";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { COURSE_PER_PAGE } from "@/common/constants/page.constant";
@@ -10,26 +10,38 @@ export const useCourseSearch = () => {
     useRouter(),
     useSearchParams(),
   ];
-
+  const originalPathname = useRef(pathname);
   const [keyword, setKeyword] = useState<string | null>(
     searchParams.get("keyword") || null
   );
   const [chips, setChips] = useState<ICourseChip[]>([]);
   const [data, setData] = useState();
   const [offset, setOffset] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const updatePathname = () => {};
+  const updatePathname = () => {
+    let newPathname = JSON.parse(JSON.stringify(originalPathname.current));
+    if (keyword) newPathname += `?keyword=${keyword}`;
+    else newPathname += "?";
+    for (const chip of chips)
+      newPathname += `&${chip.query_key}=${chip.query_value}`;
+    router.push(newPathname);
+  };
 
   const updateCourses = async () => {
-    const response = await getCourses(offset, COURSE_PER_PAGE);
+    const response = await getCourses(offset, COURSE_PER_PAGE, keyword, chips);
+    setIsLoading(false);
     setData(response);
-    console.log(response);
   };
 
   useEffect(() => {
     updatePathname();
     updateCourses();
   }, [keyword, chips, offset]);
+
+  useEffect(() => {
+    setOffset(0);
+  }, [keyword, chips]);
 
   return {
     keyword,
@@ -40,5 +52,6 @@ export const useCourseSearch = () => {
     setData,
     offset,
     setOffset,
+    isLoading,
   };
 };

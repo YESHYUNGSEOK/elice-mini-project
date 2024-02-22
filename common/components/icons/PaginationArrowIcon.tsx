@@ -13,7 +13,7 @@ export default function PaginationArrowIcon({
   isClickable,
   dispatcher,
 }: Props) {
-  const handleOnClick = () => dispatcher();
+  const handleOnClick = () => isClickable && dispatcher();
 
   return (
     <svg

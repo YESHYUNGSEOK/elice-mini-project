@@ -28,7 +28,7 @@ function calculatePageRange(currentPage: number, totalPages: number) {
   const pages = [];
 
   for (let page = startPage; page <= endPage; page++) {
-    pages.push(page);
+    if (page > 0 && page <= totalPages) pages.push(page);
   }
 
   return pages;
@@ -47,7 +47,6 @@ export default function PageNavigator({
   });
   const pages = calculatePageRange(currentPage, totalPages);
 
-  console.log(currentPage, totalPages, nextOffset, prevOffset);
   return (
     <Wrapper>
       <Navigator>
