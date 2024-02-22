@@ -52,5 +52,5 @@ const Wrapper = styled.button<{ $isClicked: boolean }>`
     color: ${(props) => !props.$isClicked && "var(--black-color)"};
     filter: brightness(90%);
   }
-  transition: filter 0.2s ease;
+  transition: all 0.3s ease;
 `;

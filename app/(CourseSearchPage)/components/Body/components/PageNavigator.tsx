@@ -45,6 +45,7 @@ export default function PageNavigator({
     count,
     totalLength,
   });
+
   const pages = calculatePageRange(currentPage, totalPages);
 
   return (

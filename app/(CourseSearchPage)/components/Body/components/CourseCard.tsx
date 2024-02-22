@@ -17,7 +17,7 @@ export default function CourseCard({ course }: Props) {
       else return "유료";
     } else if (course.enroll_type === 4) {
       return "구독";
-    }
+    } else return "-";
   };
 
   return (
