@@ -1,8 +1,9 @@
-import { use, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { getCourses } from "@/app/(CourseSearchPage)/api/getCourses";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { COURSE_PER_PAGE } from "@/common/constants/page.constant";
 import { ICourseChip } from "@/common/constants/filter.constant";
+import { COURSE_FILTER } from "@/common/constants/filter.constant";
 
 export const useCourseSearch = () => {
   const [pathname, router, searchParams] = [
@@ -10,7 +11,6 @@ export const useCourseSearch = () => {
     useRouter(),
     useSearchParams(),
   ];
-  const originalPathname = useRef(pathname);
   const [keyword, setKeyword] = useState<string | null>(
     searchParams.get("keyword") || null
   );
@@ -20,7 +20,7 @@ export const useCourseSearch = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const updatePathname = () => {
-    let newPathname = JSON.parse(JSON.stringify(originalPathname.current));
+    let newPathname = pathname;
     if (keyword) newPathname += `?keyword=${keyword}`;
     else newPathname += "?";
     for (const chip of chips)
