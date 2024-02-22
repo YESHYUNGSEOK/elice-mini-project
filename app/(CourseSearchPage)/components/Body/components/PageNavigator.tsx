@@ -96,8 +96,10 @@ const Navigator = styled.div`
 
 const IndexButton = styled.button<{ $isCurrentPage: boolean }>`
   cursor: pointer;
+
   width: 24px;
   margin: 0px 6px;
+  padding: 0;
   aspect-ratio: 1;
   border-radius: 4px;
   border: none;
