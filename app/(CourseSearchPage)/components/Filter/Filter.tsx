@@ -1,19 +1,36 @@
 "use client";
 
 import styled from "styled-components";
-
 import Chip from "@/app/(CourseSearchPage)/components/Filter/components/Chip";
+import { ICourseChip, ICourseFilter } from "@/common/constants/filter.constant";
+import { Dispatch, SetStateAction } from "react";
 
-export default function Filter() {
+interface Props {
+  filter: ICourseFilter[];
+  chips: ICourseChip[];
+  dispatcher: Dispatch<SetStateAction<ICourseChip[]>>;
+}
+
+export default function Filter({ filter, chips, dispatcher }: Props) {
   return (
     <Wrapper>
-      <FilterList>
-        <FilterTitle>가격</FilterTitle>
-        <ChipContainer>
-          <Chip>무료</Chip>
-          <Chip>유료</Chip>
-        </ChipContainer>
-      </FilterList>
+      {filter.map((filter_) => (
+        <FilterList key={filter_.title}>
+          <FilterTitle>{filter_.title}</FilterTitle>
+          <ChipContainer>
+            {filter_.items.map((chip) => (
+              <Chip
+                key={chip.name}
+                targetChip={chip}
+                chips={chips}
+                dispatcher={dispatcher}
+              >
+                {chip.name}
+              </Chip>
+            ))}
+          </ChipContainer>
+        </FilterList>
+      ))}
     </Wrapper>
   );
 }

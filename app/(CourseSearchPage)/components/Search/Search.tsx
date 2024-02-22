@@ -1,15 +1,42 @@
 "use client";
 
+import { Dispatch, SetStateAction, useState } from "react";
 import styled from "styled-components";
+import useDebounce from "@/common/hooks/useDebounce";
 import SearchIcon from "@/common/components/icons/SearchIcon";
 
-export default function Search() {
+interface Props {
+  value: string | null;
+  dispatcher: Dispatch<SetStateAction<string | null>>;
+}
+
+export default function Search({ value, dispatcher }: Props) {
+  if (!value) value = "";
+
+  const [input, setInput] = useState(value);
+  const { debounce } = useDebounce();
+
+  const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value);
+    debounce(
+      "course-search",
+      () => {
+        dispatcher(e.target.value);
+      },
+      300
+    );
+  };
+
   return (
     <Wrapper>
       <SearchIconBox>
         <SearchIcon size={13} />
       </SearchIconBox>
-      <TextBox placeholder="배우고 싶은 언어, 기술을 검색해 보세요"></TextBox>
+      <TextBox
+        placeholder="배우고 싶은 언어, 기술을 검색해 보세요"
+        value={input}
+        onChange={handleValueChange}
+      ></TextBox>
     </Wrapper>
   );
 }

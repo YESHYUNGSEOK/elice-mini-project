@@ -1,13 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { ICourseChip } from "@/common/constants/filter.constant";
+import { Dispatch, SetStateAction, useState } from "react";
 import styled from "styled-components";
 
-export default function Chip({ children }: { children: React.ReactNode }) {
-  const [isClicked, setIsClicked] = useState(false);
+interface Props {
+  children: React.ReactNode;
+  targetChip: ICourseChip;
+  chips: ICourseChip[];
+  dispatcher: Dispatch<SetStateAction<ICourseChip[]>>;
+}
+
+export default function Chip({
+  children,
+  targetChip,
+  chips,
+  dispatcher,
+}: Props) {
+  const [isClicked, setIsClicked] = useState(
+    chips.some((chip) => chip.name === children)
+  );
 
   const handleClick = () => {
     setIsClicked(!isClicked);
+    if (chips.some((chip) => chip.name === children)) {
+      dispatcher((prev) => prev.filter((chip) => chip.name !== children));
+      return;
+    }
+    dispatcher([...chips, targetChip]);
   };
 
   return (
