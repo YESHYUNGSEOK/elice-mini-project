@@ -1,7 +1,7 @@
 "use client";
 
 import styled from "styled-components";
-import SearchIcon from "@/components/icons/SearchIcon";
+import SearchIcon from "@/common/components/icons/SearchIcon";
 
 export default function Search() {
   return (

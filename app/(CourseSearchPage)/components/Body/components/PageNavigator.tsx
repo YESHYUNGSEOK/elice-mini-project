@@ -1,7 +1,7 @@
 "use client";
 
 import styled from "styled-components";
-import PaginationArrowIcon from "@/components/icons/PaginationArrowIcon";
+import PaginationArrowIcon from "@/common/components/icons/PaginationArrowIcon";
 
 export default function PageNavigator() {
   return (
