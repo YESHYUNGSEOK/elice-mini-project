@@ -67,7 +67,6 @@ Next 14, axios, styled-components
 <br/><br/>
 
 ## 구현 방식
-<br/>
 
 ![Project Logo](/public/logic_process1.png)
 
@@ -82,3 +81,31 @@ Next 14, axios, styled-components
 1. 각 컴포넌트의 데이터 변화는 useCourseSearch 내 useEffect의 의존성 배열에 의해 관찰됩니다.
 2. 컴포넌트에서 데이터 변화가 발생할 시(ex. 검색어 번경, 필터 변경, 페이지 이동) 요청 param에 조건을 변경해 새로운 데이터를 요청합니다.
 3. 새로운 데이터는 다시 Body 컴포넌트에 전달됩니다.
+
+<br/><br/>
+
+## 추가 구현사항
+
+<br/>
+
+### 첫 로드 시 Search 컴포넌트 input 포커스
+
+![Project Logo](/public/first_load_focus.png)
+
+페이지가 처음 로드되었을 시 사용자 경험을 높이기 위해 Search 컴포넌트의 input을 포커스하였습니다.
+
+<br/>
+
+### 확장 가능한 Filter 컴포넌트
+
+![Project Logo](/public/scalable_filter.png)
+
+Filter 컴포넌트는 사용자가 선택할 수 있는 chip 종류를 담는 배열을 props로 전달받습니다. 배열에 원하는 chips 종류를 인터페이스에 맞게 추가한다면 원하는 만큼 chips 종류를 다양화할 수 있습니다.
+
+<br/>
+
+### 컴포넌트 재사용성
+
+![Project Logo](/public/coursepage_page.png)
+
+Search, Filter, PageNavigation 컴포넌트는 CoursePage에 필요한 데이터에 의존적이지 않습니다. 때문에 다른 모듈에서 재사용될 수 있습니다.
