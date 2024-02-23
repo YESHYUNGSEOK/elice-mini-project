@@ -67,3 +67,18 @@ Next 14, axios, styled-components
 <br/><br/>
 
 ## 구현 방식
+<br/>
+
+![Project Logo](/public/logic_process1.png)
+
+1. useCourseSearch(커스텀 훅)은 Search, Filter, PageNavaigator, Body 컴포넌트가 필요로 하는 값과 값에 대한 setter를 제공합니다.
+2. 각 컴포넌트는 초기에 전달받은 값을 기반으로 렌더링되며 전달받은 setter를 각 기능에 필요한 eventHandler에 바인딩합니다.
+3. 초기에는 검색어와 필터가 존재하지 않으므로 모든 데이터들을 불러옵니다.
+
+<br/>
+
+![Project Logo](/public/logic_process2.png)
+
+1. 각 컴포넌트의 데이터 변화는 useCourseSearch 내 useEffect의 의존성 배열에 의해 관찰됩니다.
+2. 컴포넌트에서 데이터 변화가 발생할 시(ex. 검색어 번경, 필터 변경, 페이지 이동) 요청 param에 조건을 변경해 새로운 데이터를 요청합니다.
+3. 새로운 데이터는 다시 Body 컴포넌트에 전달됩니다.
