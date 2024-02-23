@@ -3,7 +3,8 @@ import { GETCoursesService } from "@/app/(apiServer)/v1/courses/(service)/Course
 
 export async function GET(req: NextRequest) {
   try {
-    return Response.json(await GETCoursesService(req));
+    const params = req.nextUrl.searchParams;
+    return Response.json(await GETCoursesService(params));
   } catch (error) {
     throw error;
   }
