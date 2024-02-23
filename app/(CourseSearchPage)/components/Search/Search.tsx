@@ -2,7 +2,7 @@
 
 import { Dispatch, SetStateAction, useState } from "react";
 import styled from "styled-components";
-import useDebounce from "@/common/hooks/useDebounce";
+import { useDebounce } from "@/common/hooks/useDebounce";
 import SearchIcon from "@/common/components/icons/SearchIcon";
 
 interface Props {
