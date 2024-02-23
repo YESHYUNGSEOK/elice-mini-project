@@ -1,7 +1,7 @@
 "use client";
 
 import styled from "styled-components";
-import PaginationArrowIcon from "@/common/components/icons/PaginationArrowIcon";
+import PaginationArrowButton from "@/common/components/buttons/PaginationArrowButton";
 import { usePagination } from "@/common/hooks/usePagination";
 import { Dispatch, SetStateAction } from "react";
 
@@ -12,52 +12,29 @@ interface Props {
   dispatcher: Dispatch<SetStateAction<number>>;
 }
 
-function calculatePageRange(currentPage: number, totalPages: number) {
-  const MAX_ADJACENT_PAGES = 4;
-  let startPage, endPage;
-
-  if (currentPage - MAX_ADJACENT_PAGES <= 1) startPage = 1;
-  else startPage = currentPage - MAX_ADJACENT_PAGES;
-
-  if (currentPage + MAX_ADJACENT_PAGES >= totalPages) endPage = totalPages;
-  else if (startPage === 1) endPage = startPage + MAX_ADJACENT_PAGES * 2;
-  else endPage = currentPage + MAX_ADJACENT_PAGES;
-
-  if (endPage === totalPages) startPage = endPage - MAX_ADJACENT_PAGES * 2;
-
-  const pages = [];
-
-  for (let page = startPage; page <= endPage; page++) {
-    if (page > 0 && page <= totalPages) pages.push(page);
-  }
-
-  return pages;
-}
-
 export default function PageNavigator({
   totalLength,
   offset,
   count,
   dispatcher,
 }: Props) {
-  const { currentPage, totalPages, hasNextPage, hasPrevPage } = usePagination({
+  const { pages, currentPage, hasNextPage, hasPrevPage } = usePagination({
     offset,
     count,
     totalLength,
   });
 
   const hasNoData = totalLength === 0;
-  const pages = calculatePageRange(currentPage, totalPages);
 
   return (
     <Wrapper $hasNoData={hasNoData}>
       <Navigator>
-        <PaginationArrowIcon
+        <PaginationArrowButton
           size={25}
-          direction="left"
+          direction="L"
           isClickable={hasPrevPage}
           dispatcher={() => {
-            dispatcher(offset - count), window.scrollTo(0, 0);
+            dispatcher(offset - count);
           }}
         />
         {pages.map((page) => (
@@ -65,19 +42,18 @@ export default function PageNavigator({
             key={page}
             onClick={() => {
               dispatcher(count * (page - 1));
-              window.scrollTo(0, 0);
             }}
             $isCurrentPage={page === currentPage}
           >
             {page}
           </IndexButton>
         ))}
-        <PaginationArrowIcon
+        <PaginationArrowButton
           size={25}
-          direction="right"
+          direction="R"
           isClickable={hasNextPage}
           dispatcher={() => {
-            dispatcher(offset + count), window.scrollTo(0, 0);
+            dispatcher(offset + count);
           }}
         />
       </Navigator>

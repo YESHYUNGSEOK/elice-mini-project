@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { getCourses } from "@/app/(CourseSearchPage)/api/getCourses";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { COURSE_PER_PAGE } from "@/common/constants/page.constant";
@@ -35,6 +35,10 @@ export const useCourseSearch = () => {
   useEffect(() => {
     setOffset(0);
   }, [keyword, chips]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [offset]);
 
   return {
     keyword,

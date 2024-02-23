@@ -20,5 +20,28 @@ export const usePagination = ({ offset, count, totalLength }: Props) => {
     totalPages,
     hasPrevPage: prevOffset !== null,
     hasNextPage: nextOffset !== null,
+    pages: calculatePageRange(currentPage, totalPages),
   };
+};
+
+const calculatePageRange = (currentPage: number, totalPages: number) => {
+  const MAX_ADJACENT_PAGES = 4;
+  let startPage, endPage;
+
+  if (currentPage - MAX_ADJACENT_PAGES <= 1) startPage = 1;
+  else startPage = currentPage - MAX_ADJACENT_PAGES;
+
+  if (currentPage + MAX_ADJACENT_PAGES >= totalPages) endPage = totalPages;
+  else if (startPage === 1) endPage = startPage + MAX_ADJACENT_PAGES * 2;
+  else endPage = currentPage + MAX_ADJACENT_PAGES;
+
+  if (endPage === totalPages) startPage = endPage - MAX_ADJACENT_PAGES * 2;
+
+  const pages = [];
+
+  for (let page = startPage; page <= endPage; page++) {
+    if (page > 0 && page <= totalPages) pages.push(page);
+  }
+
+  return pages;
 };
