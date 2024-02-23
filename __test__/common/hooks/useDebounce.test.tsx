@@ -2,15 +2,15 @@ import React from "react";
 import { render, act } from "@testing-library/react";
 import { useDebounce } from "@/common/hooks/useDebounce";
 
-function MockComponent1({ onAction }: { onAction: () => void }) {
+const MockComponent1 = ({ testFunction }: { testFunction: () => void }) => {
   const { debounce } = useDebounce();
-  return <button onClick={() => debounce("testAction1", onAction, 500)} />;
-}
+  return <button onClick={() => debounce("testAction1", testFunction, 500)} />;
+};
 
-function MockComponent2({ onAction }: { onAction: () => void }) {
+const MockComponent2 = ({ testFunction }: { testFunction: () => void }) => {
   const { debounce } = useDebounce();
-  return <button onClick={() => debounce("testAction2", onAction, 500)} />;
-}
+  return <button onClick={() => debounce("testAction2", testFunction, 500)} />;
+};
 
 describe("[유닛 테스트] Hook: useDebounce", () => {
   beforeEach(() => {
@@ -20,7 +20,9 @@ describe("[유닛 테스트] Hook: useDebounce", () => {
   it("함수가 한번 호출되었을 때 지연시간이 적용되는지", () => {
     const mockCallback = jest.fn();
 
-    const { getByRole } = render(<MockComponent1 onAction={mockCallback} />);
+    const { getByRole } = render(
+      <MockComponent1 testFunction={mockCallback} />
+    );
 
     act(() => {
       getByRole("button").click();
@@ -38,7 +40,9 @@ describe("[유닛 테스트] Hook: useDebounce", () => {
   it("함수가 연속적으로 호출되었을 때 디바운스 효과가 적용되는지", () => {
     const mockCallback = jest.fn();
 
-    const { getByRole } = render(<MockComponent1 onAction={mockCallback} />);
+    const { getByRole } = render(
+      <MockComponent1 testFunction={mockCallback} />
+    );
 
     act(() => {
       getByRole("button").click();
@@ -60,8 +64,8 @@ describe("[유닛 테스트] Hook: useDebounce", () => {
 
     const { getAllByRole } = render(
       <>
-        <MockComponent1 onAction={mockCallback} />
-        <MockComponent2 onAction={mockCallback} />
+        <MockComponent1 testFunction={mockCallback} />
+        <MockComponent2 testFunction={mockCallback} />
       </>
     );
 
