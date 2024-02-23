@@ -3,7 +3,7 @@
 import Search from "@/app/(CourseSearchPage)/components/Search/Search";
 import Filter from "@/app/(CourseSearchPage)/components/Filter/Filter";
 import Body from "@/app/(CourseSearchPage)/components/Body/Body";
-import PageNavigator from "@/app/(CourseSearchPage)/components/Body/components/PageNavigator";
+import PageNavigator from "@/common/components/PageNavigator/PageNavigator";
 import { useCourseSearch } from "@/app/(CourseSearchPage)/hooks/useCourseSearch";
 import { COURSE_FILTER } from "@/common/constants/filter.constant";
 import { COURSE_PER_PAGE } from "@/common/constants/page.constant";
