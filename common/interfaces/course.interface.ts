@@ -1,4 +1,5 @@
 export interface IOrgCourse {
+  id: number;
   title: string;
   enroll_type: number;
   is_free: boolean;
