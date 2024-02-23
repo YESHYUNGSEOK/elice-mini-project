@@ -9,8 +9,4 @@ export interface IOrgCourse {
 export interface OrgCourseListResponses {
   course_count: number;
   courses: IOrgCourse[];
-  _result: {
-    status: string;
-    reason: string | null;
-  };
 }

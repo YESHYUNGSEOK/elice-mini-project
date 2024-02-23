@@ -1,7 +1,7 @@
 "use client";
 
 import styled from "styled-components";
-import CourseCard from "@/app/(CourseSearchPage)/components/Body/components/CourseCard";
+import CourseCard from "@/app/(CourseSearchPage)/components/Body/components/CourseCard/CourseCard";
 
 interface Props {
   children: React.ReactNode;

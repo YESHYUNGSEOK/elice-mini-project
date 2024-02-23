@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getCourses } from "@/app/(CourseSearchPage)/api/getCourses";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { COURSE_PER_PAGE } from "@/common/constants/page.constant";

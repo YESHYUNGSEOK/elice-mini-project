@@ -5,24 +5,16 @@ import CalenderIcon from "@/common/components/icons/CalenderIcon";
 import LaptopIcon from "@/common/components/icons/LaptopIcon";
 import LevelIcon from "@/common/components/icons/LevelIcon";
 import { IOrgCourse } from "@/common/interfaces/course.interface";
+import { getLabel } from "@/app/(CourseSearchPage)/components/Body/components/CourseCard/getLabel";
 
 interface Props {
   course: IOrgCourse;
 }
 
 export default function CourseCard({ course }: Props) {
-  const getLabel = () => {
-    if (course.enroll_type === 0) {
-      if (course.is_free) return "무료";
-      else return "유료";
-    } else if (course.enroll_type === 4) {
-      return "구독";
-    } else return "-";
-  };
-
   return (
     <Wrapper>
-      <Label>{getLabel()}</Label>
+      <Label>{getLabel(course)}</Label>
       <Title>{course.title}</Title>
       <Description>{course.short_description}</Description>
       <Content>
