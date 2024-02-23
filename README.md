@@ -10,7 +10,7 @@
 
 ## 사용 기술
 
-Next 14, axios, styled-components
+Next 14, axios, styled-components, jest
 
 <br/><br/>
 
