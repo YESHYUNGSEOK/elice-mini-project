@@ -20,7 +20,7 @@ export default function Home() {
     isLoading,
   } = useCourseSearch();
 
-  if (isLoading || !courses) return <main className="container"></main>;
+  if (isLoading) return <main className="container"></main>;
 
   return (
     <main className="container">
@@ -28,7 +28,7 @@ export default function Home() {
       <Filter filter={COURSE_FILTER} chips={chips} dispatcher={setChips} />
       <Body data={courses}>
         <PageNavigator
-          totalLength={courses.course_count}
+          totalLength={courses?.course_count || 0}
           offset={offset}
           count={COURSE_PER_PAGE}
           dispatcher={setOffset}
