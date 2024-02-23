@@ -1,4 +1,3 @@
-import { NextRequest } from "next/server";
 import axios from "axios";
 import {
   IOrgCourse,
@@ -7,13 +6,12 @@ import {
 
 const eliceApiUrl = process.env.ELICE_API_URL as string;
 
-export async function GET(req: NextRequest) {
+export async function GETCoursesRepository(
+  offset: number,
+  count: number,
+  filterConditions: string
+) {
   try {
-    const searchParams = req.nextUrl.searchParams;
-    const offset = searchParams.get("offset");
-    const count = searchParams.get("count");
-    const filterConditions = searchParams.get("filter_conditions");
-
     const response = await axios.get(eliceApiUrl, {
       params: {
         filter_conditions: filterConditions,
@@ -38,7 +36,7 @@ export async function GET(req: NextRequest) {
       course_count: response.data.course_count,
     };
 
-    return Response.json(res);
+    return res;
   } catch (error) {
     throw error;
   }
